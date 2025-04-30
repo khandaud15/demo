@@ -2235,6 +2235,22 @@ function App() {
                   <h1 className="text-3xl font-bold mb-6">How CashX Works</h1>
                   <p className="text-gray-600">Detailed explanation page will be implemented in the next phase.</p>
                 </div>} />
+                <Route path="/facts" element={<div className="container mx-auto py-8 px-4">
+                  <h1 className="text-3xl font-bold mb-6">Get the Facts</h1>
+                  <p className="text-gray-600">Facts and information about CashX will be implemented in the next phase.</p>
+                </div>} />
+                <Route path="/payment-benefits" element={<div className="container mx-auto py-8 px-4">
+                  <h1 className="text-3xl font-bold mb-6">Payment & Benefits</h1>
+                  <p className="text-gray-600">Information about payment methods and benefits will be implemented in the next phase.</p>
+                </div>} />
+                <Route path="/invite" element={<div className="container mx-auto py-8 px-4">
+                  <h1 className="text-3xl font-bold mb-6">Invite a Friend</h1>
+                  <p className="text-gray-600">Referral program details will be implemented in the next phase.</p>
+                </div>} />
+                <Route path="/help" element={<div className="container mx-auto py-8 px-4">
+                  <h1 className="text-3xl font-bold mb-6">Help Center</h1>
+                  <p className="text-gray-600">Help and support resources will be implemented in the next phase.</p>
+                </div>} />
                 <Route path="*" element={
                   <div className="min-h-screen flex justify-center items-center bg-gray-50">
                     <div className="text-center max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">

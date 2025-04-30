@@ -720,9 +720,18 @@ const Login = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                    Password
-                  </label>
+                  <div className="flex justify-between">
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                      Password
+                    </label>
+                    <button 
+                      type="button" 
+                      onClick={navigateToForgotPassword} 
+                      className="text-sm text-blue-600 hover:text-blue-500"
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
                   <div className="mt-1">
                     <input
                       id="password"

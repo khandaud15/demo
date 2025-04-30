@@ -243,6 +243,7 @@ def main():
     test_user_email = f"test_user_{datetime.now().strftime('%H%M%S')}@example.com"
     test_user_name = f"Test User {datetime.now().strftime('%H%M%S')}"
     test_password = "TestPass123!"
+    new_password = f"NewPass{uuid.uuid4().hex[:8]}!"
     
     print(f"Starting CashX API tests at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"API URL: {tester.api_url}")
@@ -266,6 +267,32 @@ def main():
     user_success, user_response = tester.test_get_current_user()
     if not user_success:
         print("❌ Getting user profile failed")
+    
+    # Test forgot password functionality
+    print("\n===== Testing Forgot Password Flow =====\n")
+    forgot_success, forgot_response = tester.test_forgot_password(test_user_email)
+    if not forgot_success:
+        print("❌ Forgot password failed, stopping password reset tests")
+    else:
+        # Get the reset token from the response
+        reset_token = forgot_response.get('reset_token')
+        if reset_token:
+            # Test password reset functionality
+            reset_success, reset_response = tester.test_reset_password(reset_token, new_password)
+            if reset_success:
+                print("✅ Password reset successful")
+                
+                # Test login with the new password
+                print("\n🔍 Testing login with new password...")
+                new_login_success, new_login_response = tester.test_login(test_user_email, new_password)
+                if new_login_success:
+                    print("✅ Login with new password successful")
+                else:
+                    print("❌ Login with new password failed")
+            else:
+                print("❌ Password reset failed")
+        else:
+            print("❌ No reset token received, cannot test password reset")
     
     # Test seeding products (if needed)
     seed_success, seed_response = tester.test_seed_products()

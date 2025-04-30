@@ -228,45 +228,42 @@ const Navbar = () => {
   };
   
   return (
-    <nav className="bg-green-100 text-gray-800 shadow-lg sticky top-0 z-50">
+    <nav className="bg-white text-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-200">
       <div className="container mx-auto px-4 py-3">
         {/* Main Navigation Bar */}
         <div className="flex justify-between items-center">
           {/* Logo and Main Nav Links */}
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center">
-              <span className="text-xl font-bold">CashX</span>
+              <span className="text-2xl font-bold text-teal-500">CashX</span>
               <span className="sr-only">Logo</span>
             </Link>
             
             {/* Main Navigation Links */}
-            <div className="hidden md:flex space-x-6">
-              <Link to="/how-it-works" className="hover:text-blue-600 font-medium">
+            <div className="hidden md:flex space-x-8">
+              <Link to="/how-it-works" className="hover:text-teal-600 font-medium text-gray-700">
                 How CashX Works
               </Link>
-              <Link to="/facts" className="hover:text-blue-600 font-medium">
+              <Link to="/facts" className="hover:text-teal-600 font-medium text-gray-700">
                 Get the Facts
               </Link>
-              <Link to="/payment-benefits" className="hover:text-blue-600 font-medium">
-                Payment & Benefit
+              <Link to="/payment-benefits" className="hover:text-teal-600 font-medium text-gray-700">
+                Payment & Benefits
               </Link>
-              <Link to="/invite" className="hover:text-blue-600 font-medium">
+              <Link to="/invite" className="hover:text-teal-600 font-medium text-gray-700">
                 Invite a Friend
-              </Link>
-              <Link to="/help" className="hover:text-blue-600 font-medium">
-                Help
               </Link>
             </div>
           </div>
           
           {/* Right Section: Search, Login, Signup */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="hidden md:block relative">
               <input
                 type="text"
                 placeholder="Search brands, products and stores"
-                className="bg-white border border-gray-300 rounded-full py-2 px-4 pr-10 w-64 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                className="bg-gray-100 border border-gray-200 rounded-full py-2 px-4 pr-10 w-64 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -280,16 +277,21 @@ const Navbar = () => {
               </button>
             </form>
             
+            {/* Help Link */}
+            <Link to="/help" className="hidden md:block hover:text-teal-600 font-medium text-gray-700">
+              Help
+            </Link>
+            
             {/* User Menu or Auth Buttons */}
             {user ? (
               <div className="relative" ref={dropdownRef}>
                 <div className="flex items-center">
-                  <span className="hidden md:inline mr-3 text-sm font-medium">
+                  <span className="hidden md:inline mr-3 text-sm font-medium text-teal-600">
                     Balance: ₹{user.cashback_balance.toFixed(2)}
                   </span>
                   <button 
                     onClick={toggleDropdown} 
-                    className="flex items-center hover:text-blue-600 focus:outline-none"
+                    className="flex items-center hover:text-teal-600 focus:outline-none"
                   >
                     <span className="mr-1">{user.name}</span>
                     <svg 
@@ -307,42 +309,42 @@ const Navbar = () => {
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                     <Link 
                       to="/profile" 
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                       onClick={() => setDropdownOpen(false)}
                     >
                       My Profile
                     </Link>
                     <Link 
                       to="/products" 
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Browse Products
                     </Link>
                     <Link 
                       to="/transactions" 
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                       onClick={() => setDropdownOpen(false)}
                     >
                       My Transactions
                     </Link>
                     <Link 
                       to="/cashback" 
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                       onClick={() => setDropdownOpen(false)}
                     >
                       My Cashback
                     </Link>
                     <Link 
                       to="/payment-methods" 
-                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Payment Methods
                     </Link>
                     <button 
                       onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-teal-50 hover:text-teal-700"
                     >
                       Logout
                     </button>
@@ -353,13 +355,13 @@ const Navbar = () => {
               <div className="flex items-center space-x-3">
                 <Link 
                   to="/login" 
-                  className="font-semibold text-gray-800 hover:text-blue-600 px-4 py-2"
+                  className="font-semibold text-gray-800 hover:text-teal-600 px-4 py-2"
                 >
                   Login
                 </Link>
                 <Link 
                   to="/register" 
-                  className="bg-gray-900 text-white font-semibold py-2 px-4 rounded hover:bg-gray-800"
+                  className="bg-teal-500 text-white font-semibold py-2 px-4 rounded hover:bg-teal-600 transition duration-200"
                 >
                   Sign Up
                 </Link>

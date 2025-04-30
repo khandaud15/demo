@@ -386,26 +386,33 @@ const Navbar = () => {
         </div>
         
         {/* Mobile Navigation Toggle - only shown on small screens */}
-        <div className="md:hidden mt-4 flex justify-between items-center">
+        <div className="block md:hidden mt-4 flex justify-between items-center">
           <button 
             onClick={toggleMobileMenu} 
-            className="text-gray-600 hover:text-teal-600 focus:outline-none"
+            className="text-gray-700 hover:text-teal-600 focus:outline-none rounded p-1 border border-gray-200 hover:border-teal-400"
+            aria-label="Open mobile menu"
           >
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
           
           <div className="flex items-center space-x-3">
             {/* Mobile Search */}
-            <button className="text-gray-600 hover:text-teal-600 focus:outline-none">
+            <button 
+              className="text-gray-700 hover:text-teal-600 focus:outline-none p-1 border border-gray-200 rounded hover:border-teal-400"
+              aria-label="Search"
+            >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
             
             {/* Mobile Cart */}
-            <button className="text-gray-600 hover:text-teal-600 focus:outline-none relative">
+            <button 
+              className="text-gray-700 hover:text-teal-600 focus:outline-none relative p-1 border border-gray-200 rounded hover:border-teal-400"
+              aria-label="Shopping cart"
+            >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>

@@ -165,6 +165,7 @@ const AuthProvider = ({ children }) => {
       loading, 
       error, 
       login, 
+      googleLogin,
       register, 
       logout, 
       getApiClient,

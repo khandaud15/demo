@@ -1196,13 +1196,16 @@ const ForgotPassword = () => {
       const response = await axios.post(`${API}/auth/forgot-password`, { email });
       console.log("Forgot password response:", response.data);
       
-      setSubmitted(true);
-      
       // For demo purposes only, we're getting the token from the response
       // In a real app, this would be sent via email
-      if (response.data.reset_token) {
+      if (response.data && response.data.reset_token) {
+        console.log("Reset token received:", response.data.reset_token.substring(0, 10) + "...");
         setResetToken(response.data.reset_token);
+      } else {
+        console.warn("No reset token found in response:", response.data);
       }
+      
+      setSubmitted(true);
     } catch (err) {
       console.error("Forgot password error:", err);
       setError("An error occurred. Please try again.");

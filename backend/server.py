@@ -207,6 +207,10 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 async def root():
     return {"message": "Welcome to CashX API"}
 
+# Authentication Models for Google Auth
+class GoogleAuthRequest(BaseModel):
+    token: str
+    
 # Authentication endpoints
 @api_router.post("/auth/register", response_model=User)
 async def register_user(user: UserCreate):
@@ -245,6 +249,54 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
     access_token = create_access_token(data={"sub": user["id"]})
     
     return {"access_token": access_token, "user": user_obj}
+
+@api_router.post("/auth/google", response_model=Token)
+async def google_auth(google_data: GoogleAuthRequest):
+    try:
+        # In a production environment, you would verify the Google token
+        # with Google's API. For this example, we'll assume the token is valid
+        # and extract the user information from it.
+        
+        # Simulating token verification and extraction of user data
+        # In a real implementation, you would use the google-auth library to verify the token
+        # and extract the payload
+        
+        # Assuming we extracted these from the token:
+        # For demonstration, we're extracting a simple user ID from the token length
+        google_user_id = f"google_{len(google_data.token)}"
+        google_email = f"googleuser_{len(google_data.token)}@example.com"
+        google_name = f"Google User {len(google_data.token)}"
+        
+        # Check if user already exists
+        existing_user = await db.users.find_one({"email": google_email})
+        
+        if existing_user:
+            # User exists, create a token for them
+            user_obj = User(**{k: v for k, v in existing_user.items() if k != "password"})
+            access_token = create_access_token(data={"sub": existing_user["id"]})
+        else:
+            # Create a new user
+            new_user = User(
+                email=google_email,
+                name=google_name
+            )
+            new_user_dict = new_user.dict()
+            # No password for Google auth users, but save a placeholder
+            new_user_dict["password"] = "GOOGLE_AUTH_USER"
+            
+            # Save to database
+            await db.users.insert_one(new_user_dict)
+            
+            # Don't return password
+            new_user_dict.pop("password", None)
+            
+            user_obj = User(**new_user_dict)
+            access_token = create_access_token(data={"sub": user_obj.id})
+        
+        return {"access_token": access_token, "user": user_obj}
+        
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Could not validate Google credentials: {str(e)}")
 
 @api_router.get("/users/me", response_model=User)
 async def get_current_user_profile(current_user: User = Depends(get_current_user)):

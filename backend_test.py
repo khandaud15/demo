@@ -206,6 +206,36 @@ class CashXAPITester:
             "redemptions",
             200
         )
+        
+    def test_forgot_password(self, email):
+        """Test forgot password functionality"""
+        success, response = self.run_test(
+            "Forgot Password",
+            "POST",
+            "auth/forgot-password",
+            200,
+            data={"email": email}
+        )
+        
+        if success and 'reset_token' in response:
+            print(f"Reset token received: {response['reset_token'][:10]}...")
+            return True, response
+        return success, response
+        
+    def test_reset_password(self, token, new_password):
+        """Test password reset functionality"""
+        success, response = self.run_test(
+            "Reset Password",
+            "POST",
+            "auth/reset-password",
+            200,
+            data={
+                "token": token,
+                "new_password": new_password
+            }
+        )
+        
+        return success, response
 
 def main():
     # Setup

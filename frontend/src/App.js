@@ -731,7 +731,7 @@ const Register = () => {
   const [formError, setFormError] = useState("");
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
   
-  const { register, loading, error } = useAuth();
+  const { register, googleLogin, loading, error } = useAuth();
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
@@ -765,6 +765,24 @@ const Register = () => {
         setTimeout(() => navigate("/login"), 1500);
       }
     }
+  };
+  
+  // Google login handlers
+  const handleGoogleSuccess = async (credentialResponse) => {
+    console.log("Google login success:", credentialResponse);
+    
+    if (credentialResponse.credential) {
+      const result = await googleLogin(credentialResponse.credential);
+      
+      if (result.success) {
+        setRegistrationSuccess(true);
+        setTimeout(() => navigate("/products"), 1500);
+      }
+    }
+  };
+  
+  const handleGoogleError = () => {
+    console.error("Google login failed");
   };
   
   return (

@@ -912,6 +912,38 @@ const Register = () => {
                   </div>
                   <div className="relative flex justify-center text-sm">
                     <span className="px-2 bg-white text-gray-500">
+                      Or continue with
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="mt-6">
+                  {/* Google Login Button */}
+                  <div className="flex justify-center">
+                    <div className="w-full">
+                      <GoogleLogin
+                        onSuccess={handleGoogleSuccess}
+                        onError={handleGoogleError}
+                        useOneTap
+                        theme="outline"
+                        size="large"
+                        text="signup_with"
+                        shape="rectangular"
+                        width="100%"
+                        logo_alignment="left"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="mt-6">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">
                       Already have an account?
                     </span>
                   </div>

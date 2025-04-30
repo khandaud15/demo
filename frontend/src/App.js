@@ -428,17 +428,17 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-teal-400 to-emerald-500 text-white">
-        <div className="container mx-auto px-4 py-16 md:py-24">
+      <div className="bg-gradient-to-r from-teal-400 to-emerald-500 text-white">
+        <div className="container mx-auto px-4 py-12 md:py-20">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0">
+            <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                More Than Shopping. It's Earning.
+                More Than Shopping.<br />It's Earning.
               </h1>
               <p className="text-lg md:text-xl mb-8 opacity-90">
                 CashX gives you rewards on every purchase. Shop at your favorite stores, earn cashback instantly.
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                 {user ? (
                   <Link to="/products" className="bg-white text-teal-600 py-3 px-8 rounded-full font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
                     Browse Products
@@ -453,7 +453,7 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="md:w-1/2 flex justify-center">
+            <div className="md:w-1/2 flex justify-center md:justify-end">
               <img 
                 src="https://raw.githubusercontent.com/khandaud15/demo/main/Main.png"
                 alt="Shopping cart with cashback" 

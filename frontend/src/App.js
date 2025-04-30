@@ -534,7 +534,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const { login, loading, error } = useAuth();
+  const { login, googleLogin, loading, error } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -557,6 +557,27 @@ const Login = () => {
         navigate(redirectTo);
       }, 1000);
     }
+  };
+  
+  const handleGoogleSuccess = async (credentialResponse) => {
+    console.log("Google login success:", credentialResponse);
+    
+    if (credentialResponse.credential) {
+      const result = await googleLogin(credentialResponse.credential);
+      
+      if (result.success) {
+        setLoginSuccess(true);
+        
+        // Redirect to the target page after a short delay
+        setTimeout(() => {
+          navigate(redirectTo);
+        }, 1000);
+      }
+    }
+  };
+  
+  const handleGoogleError = () => {
+    console.error("Google login failed");
   };
   
   return (

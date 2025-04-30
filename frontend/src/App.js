@@ -456,48 +456,48 @@ const Home = () => {
       </div>
       
       {/* How It Works */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+      <div className="container mx-auto px-4 py-24">
+        <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="text-4xl font-bold mb-6 text-gray-900">How CashX Works</h2>
           <p className="text-lg text-gray-600">Earning cashback has never been easier. Shop at your favorite stores and get rewarded instantly.</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="flex flex-col items-center">
-            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
-              <span className="text-2xl font-bold">1</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+          <div className="flex flex-col items-center relative pb-6">
+            <div className="bg-teal-100 text-teal-600 w-24 h-12 rounded-full flex items-center justify-center mb-10 shadow-md transform -rotate-3">
+              <span className="text-2xl font-bold">Step 1</span>
             </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900">Browse Products</h3>
-            <p className="text-gray-600 text-center">
+            <h3 className="text-xl font-semibold mb-4 text-gray-900">Browse Products</h3>
+            <p className="text-gray-600 text-center px-4">
               Explore thousands of products from Amazon and other top retailers with exclusive cashback offers.
             </p>
           </div>
           
-          <div className="flex flex-col items-center">
-            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
-              <span className="text-2xl font-bold">2</span>
+          <div className="flex flex-col items-center relative pb-6 mt-8 md:mt-0">
+            <div className="bg-teal-100 text-teal-600 w-24 h-12 rounded-full flex items-center justify-center mb-10 shadow-md transform rotate-3">
+              <span className="text-2xl font-bold">Step 2</span>
             </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900">Shop Through Our Links</h3>
-            <p className="text-gray-600 text-center">
+            <h3 className="text-xl font-semibold mb-4 text-gray-900">Shop Through Links</h3>
+            <p className="text-gray-600 text-center px-4">
               Click on our affiliate links to shop on your favorite sites. Your purchases are automatically tracked.
             </p>
           </div>
           
-          <div className="flex flex-col items-center">
-            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
-              <span className="text-2xl font-bold">3</span>
+          <div className="flex flex-col items-center relative pb-6 mt-8 md:mt-0">
+            <div className="bg-teal-100 text-teal-600 w-24 h-12 rounded-full flex items-center justify-center mb-10 shadow-md transform -rotate-3">
+              <span className="text-2xl font-bold">Step 3</span>
             </div>
-            <h3 className="text-xl font-semibold mb-3 text-gray-900">Earn & Redeem Cashback</h3>
-            <p className="text-gray-600 text-center">
+            <h3 className="text-xl font-semibold mb-4 text-gray-900">Earn Cashback</h3>
+            <p className="text-gray-600 text-center px-4">
               Earn cashback on verified purchases and redeem instantly via bank transfer or UPI.
             </p>
           </div>
         </div>
         
-        <div className="mt-16 text-center">
-          <Link to="/how-it-works" className="inline-flex items-center text-teal-600 font-semibold hover:text-teal-800">
+        <div className="mt-20 text-center">
+          <Link to="/how-it-works" className="inline-flex items-center text-teal-600 font-semibold hover:text-teal-800 text-lg">
             Learn more about how CashX works
-            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
           </Link>

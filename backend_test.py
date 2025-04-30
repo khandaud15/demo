@@ -222,6 +222,21 @@ class CashXAPITester:
             return True, response
         return success, response
         
+    def test_google_auth(self):
+        """Test Google authentication endpoint"""
+        success, response = self.run_test(
+            "Google Auth",
+            "POST",
+            "auth/google",
+            200,
+            data={"token": "test_google_token"}
+        )
+        
+        if success and 'access_token' in response:
+            print(f"Google auth successful, received token: {response['access_token'][:10]}...")
+            return True, response
+        return success, response
+        
     def test_reset_password(self, token, new_password):
         """Test password reset functionality"""
         success, response = self.run_test(

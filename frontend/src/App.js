@@ -929,7 +929,7 @@ const Login = () => {
                       <GoogleLogin
                         onSuccess={handleGoogleSuccess}
                         onError={handleGoogleError}
-                        useOneTap
+                        useOneTap={false}
                         theme="outline"
                         size="large"
                         text="signin_with"
@@ -937,6 +937,9 @@ const Login = () => {
                         width="100%"
                         logo_alignment="left"
                       />
+                      <div className="mt-2 text-xs text-gray-500 text-center">
+                        Client ID: {window.googleClientId ? window.googleClientId.substring(0, 8) + "..." : "Not set"}
+                      </div>
                     </div>
                   </div>
                 </div>

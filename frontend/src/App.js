@@ -1240,17 +1240,21 @@ const ForgotPassword = () => {
               </p>
               
               {/* This section is for demo purposes only */}
-              {resetToken && (
-                <div className="mt-4 p-4 bg-gray-100 rounded-md">
-                  <p className="text-xs text-gray-500 mb-2">Demo: Use this link to reset your password:</p>
+              <div className="mt-4 p-4 bg-gray-100 rounded-md">
+                <p className="text-xs text-gray-500 mb-2">
+                  <strong>Demo Mode:</strong> {resetToken ? "Use this link to reset your password:" : "No reset token received"}
+                </p>
+                {resetToken ? (
                   <Link 
                     to={`/reset-password?token=${resetToken}`}
                     className="text-xs text-blue-600 hover:text-blue-500 break-all"
                   >
                     Reset Password Link
                   </Link>
-                </div>
-              )}
+                ) : (
+                  <span className="text-xs text-red-500">Error: Reset token not received from server. Please try again.</span>
+                )}
+              </div>
               
               <div className="mt-6">
                 <Link

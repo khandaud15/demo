@@ -189,13 +189,16 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
   
   const handleLogout = () => {
     logout();
     navigate("/login");
     setDropdownOpen(false);
+    setMobileMenuOpen(false);
   };
   
   const handleSearch = (e) => {
@@ -206,11 +209,15 @@ const Navbar = () => {
     // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
   };
   
-  // Handle click outside to close dropdown
+  // Handle click outside to close dropdowns
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
+      }
+      
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
+        setMobileMenuOpen(false);
       }
     };
 
@@ -221,10 +228,14 @@ const Navbar = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [dropdownRef]);
+  }, [dropdownRef, mobileMenuRef]);
   
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+  
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
   };
   
   return (

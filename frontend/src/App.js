@@ -423,76 +423,192 @@ const Navbar = () => {
         
         {/* Mobile Navigation Menu */}
         {mobileMenuOpen && (
-          <div ref={mobileMenuRef} className="md:hidden mt-2 py-3 px-2 bg-white rounded-lg shadow-lg border border-gray-200">
-            <div className="flex flex-col space-y-2">
-              <Link 
-                to="/how-it-works" 
-                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                How CashX Works
-              </Link>
-              <Link 
-                to="/facts" 
-                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Get the Facts
-              </Link>
-              <Link 
-                to="/payment-benefits" 
-                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Payment & Benefits
-              </Link>
-              <Link 
-                to="/invite" 
-                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Invite a Friend
-              </Link>
-              <Link 
-                to="/help" 
-                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Help
-              </Link>
+          <div 
+            ref={mobileMenuRef} 
+            className="block md:hidden fixed inset-0 z-50 bg-white"
+            style={{ animation: 'fadeIn 0.3s ease-out' }}
+          >
+            <div className="flex flex-col h-full">
+              {/* Mobile Menu Header */}
+              <div className="flex justify-between items-center p-4 border-b border-gray-200">
+                <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+                  <img 
+                    src="https://raw.githubusercontent.com/khandaud15/demo/main/logo6.png" 
+                    alt="CashX Logo" 
+                    className="h-8 w-auto"
+                  />
+                </Link>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-gray-500 hover:text-teal-600 focus:outline-none rounded-full hover:bg-gray-100"
+                  aria-label="Close menu"
+                >
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
               
-              {user && (
-                <>
-                  <div className="border-t border-gray-200 my-2 pt-2"></div>
+              {/* Mobile Menu Items */}
+              <div className="flex-1 overflow-y-auto p-4">
+                <div className="flex flex-col space-y-3">
+                  {/* Primary Navigation */}
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-4 mb-2 px-4">
+                    Navigation
+                  </div>
+                  
                   <Link 
-                    to="/products" 
-                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    to="/how-it-works" 
+                    className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Browse Products
+                    <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    How CashX Works
                   </Link>
+                  
                   <Link 
-                    to="/transactions" 
-                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    to="/facts" 
+                    className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    My Transactions
+                    <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    Get the Facts
                   </Link>
+                  
                   <Link 
-                    to="/cashback" 
-                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    to="/payment-benefits" 
+                    className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    My Cashback
+                    <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    Payment & Benefits
                   </Link>
-                  <button 
-                    onClick={handleLogout}
-                    className="px-4 py-2 text-left text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                  
+                  <Link 
+                    to="/invite" 
+                    className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
-                    Logout
-                  </button>
-                </>
-              )}
+                    <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </span>
+                    Invite a Friend
+                  </Link>
+                  
+                  <Link 
+                    to="/help" 
+                    className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </span>
+                    Help
+                  </Link>
+                  
+                  {user && (
+                    <>
+                      <div className="border-t border-gray-200 my-4"></div>
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mt-4 mb-2 px-4">
+                        Account
+                      </div>
+                      
+                      <div className="px-4 py-3 bg-teal-50 rounded-lg mb-4">
+                        <p className="text-sm text-gray-600">Signed in as</p>
+                        <p className="font-medium text-gray-900">{user.name}</p>
+                        <p className="text-teal-600 font-medium mt-1">Balance: ₹{user.cashback_balance.toFixed(2)}</p>
+                      </div>
+                      
+                      <Link 
+                        to="/products" 
+                        className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                          </svg>
+                        </span>
+                        Browse Products
+                      </Link>
+                      
+                      <Link 
+                        to="/transactions" 
+                        className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                          </svg>
+                        </span>
+                        My Transactions
+                      </Link>
+                      
+                      <Link 
+                        to="/cashback" 
+                        className="px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-lg flex items-center"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className="mr-3 bg-teal-100 text-teal-600 p-2 rounded-lg">
+                          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </span>
+                        My Cashback
+                      </Link>
+                      
+                      <button 
+                        onClick={handleLogout}
+                        className="px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 rounded-lg flex items-center w-full"
+                      >
+                        <span className="mr-3 bg-red-100 text-red-500 p-2 rounded-lg">
+                          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                          </svg>
+                        </span>
+                        Logout
+                      </button>
+                    </>
+                  )}
+                  
+                  {!user && (
+                    <>
+                      <div className="border-t border-gray-200 my-4"></div>
+                      <Link 
+                        to="/login" 
+                        className="px-4 py-3 text-teal-700 bg-teal-50 hover:bg-teal-100 rounded-lg flex items-center justify-center font-medium"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Login
+                      </Link>
+                      <Link 
+                        to="/register" 
+                        className="px-4 py-3 text-white bg-teal-600 hover:bg-teal-700 rounded-lg flex items-center justify-center font-medium"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        Sign Up
+                      </Link>
+                    </>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         )}

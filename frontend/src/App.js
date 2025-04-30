@@ -501,35 +501,43 @@ const Home = () => {
       </div>
       
       {/* Featured Products */}
-      <div className="bg-gray-100 py-16">
+      <div className="bg-gray-50 py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Products with Cashback</h2>
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <h2 className="text-4xl font-bold mb-6 text-gray-900">Featured Products with Cashback</h2>
+            <p className="text-lg text-gray-600">Discover amazing deals with exclusive cashback offers on your favorite products.</p>
+          </div>
           
           {loading ? (
             <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-600"></div>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {products.map(product => (
-                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                  <img 
-                    src={product.image_url} 
-                    alt={product.title}
-                    className="w-full h-48 object-contain p-4"
-                  />
-                  <div className="p-4">
-                    <h3 className="text-lg font-semibold mb-2">{product.title}</h3>
-                    <p className="text-gray-600 mb-2">{product.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-lg font-bold">₹{product.price.toFixed(2)}</span>
-                      <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">
-                        {product.cashback_percent}% Cashback
+                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1">
+                  <div className="relative">
+                    <img 
+                      src={product.image_url} 
+                      alt={product.title}
+                      className="w-full h-52 object-contain p-4"
+                    />
+                    <div className="absolute top-4 right-4 bg-teal-500 text-white px-2 py-1 rounded-md text-sm font-semibold">
+                      {product.cashback_percent}% Cashback
+                    </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-gray-900">{product.title}</h3>
+                    <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-xl font-bold text-gray-900">₹{product.price.toFixed(2)}</span>
+                      <span className="text-teal-600 font-medium">
+                        Earn: ₹{(product.price * product.cashback_percent / 100).toFixed(2)}
                       </span>
                     </div>
                     <Link 
                       to={user ? `/products/${product.id}` : `/login?redirect=${encodeURIComponent(`/products/${product.id}`)}`}
-                      className="block w-full text-center bg-blue-600 text-white py-2 rounded-md mt-4 hover:bg-blue-700"
+                      className="block w-full text-center bg-teal-500 text-white py-3 rounded-md font-medium hover:bg-teal-600 transition duration-300"
                     >
                       View Product
                     </Link>
@@ -539,32 +547,40 @@ const Home = () => {
             </div>
           )}
           
-          <div className="text-center mt-8">
+          <div className="text-center mt-12">
             <Link 
               to={user ? "/products" : "/login?redirect=/products"}
-              className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700"
+              className="inline-flex items-center text-teal-600 font-semibold hover:text-teal-800 text-lg"
             >
               View All Products
+              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
             </Link>
           </div>
         </div>
       </div>
       
       {/* CTA Section */}
-      <div className="container mx-auto px-4 py-16 text-center">
-        <h2 className="text-3xl font-bold mb-4">Ready to Start Earning Cashback?</h2>
-        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Join thousands of smart shoppers who earn cashback on their everyday purchases. It's free to join!
-        </p>
-        {user ? (
-          <Link to="/products" className="bg-blue-600 text-white py-3 px-8 rounded-md font-semibold text-lg hover:bg-blue-700">
-            Browse Products
-          </Link>
-        ) : (
-          <Link to="/register" className="bg-blue-600 text-white py-3 px-8 rounded-md font-semibold text-lg hover:bg-blue-700">
-            Sign Up Now
-          </Link>
-        )}
+      <div className="bg-gradient-to-br from-teal-400 to-emerald-500 py-20 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold mb-6">Ready to Start Earning Cashback?</h2>
+            <p className="text-xl mb-10 opacity-90">
+              Join thousands of smart shoppers who earn cashback on their everyday purchases. It's free to join!
+            </p>
+            {user ? (
+              <Link to="/products" className="bg-white text-teal-600 py-4 px-10 rounded-md font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
+                Browse Products
+              </Link>
+            ) : (
+              <Link to="/register" className="bg-white text-teal-600 py-4 px-10 rounded-md font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
+                Sign Up Now
+              </Link>
+            )}
+          </div>
+        </div>
+      </div>
       </div>
       
       {/* Footer */}

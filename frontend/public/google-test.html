@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Login Test</title>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .container {
+      margin-top: 40px;
+      text-align: center;
+    }
+    h1 {
+      color: #4285f4;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+    .note {
+      background-color: #fef9e7;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Google Login Test Page</h1>
+    <p>This page tests if Google Sign-In works with the provided client ID.</p>
+    
+    <div class="note">
+      <strong>Client ID:</strong> 
+      <code id="client-id">389490734160-kdfbbesl0913elnt7i0km6jq4a6pr9ov.apps.googleusercontent.com</code>
+    </div>
+    
+    <div style="margin-top: 30px;">
+      <div id="g_id_onload"
+         data-client_id="389490734160-kdfbbesl0913elnt7i0km6jq4a6pr9ov.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+      </div>
+      <div class="g_id_signin" data-type="standard"></div>
+    </div>
+    
+    <div id="response-container" style="margin-top: 30px; display: none;">
+      <h3>Response from Google:</h3>
+      <pre id="response"></pre>
+    </div>
+    
+    <div class="note" style="margin-top: 40px;">
+      <h3>Troubleshooting:</h3>
+      <ul>
+        <li>Make sure your client ID is correct</li>
+        <li>Check that your Google Cloud Console project has the proper OAuth configuration</li>
+        <li>Verify that you've added this domain to your authorized JavaScript origins</li>
+        <li>Try using a different browser or clearing your cache</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script>
+    function handleCredentialResponse(response) {
+      document.getElementById('response-container').style.display = 'block';
+      document.getElementById('response').textContent = JSON.stringify(response, null, 2);
+      
+      // Check if the credential is present
+      if (response.credential) {
+        console.log("Google login successful");
+        console.log("ID token:", response.credential.substring(0, 20) + "...");
+      }
+    }
+    
+    window.onload = function() {
+      console.log("Page loaded, Google Sign-In initialized");
+    }
+  </script>
+</body>
+</html>

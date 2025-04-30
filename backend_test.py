@@ -283,6 +283,14 @@ def main():
     if not user_success:
         print("❌ Getting user profile failed")
     
+    # Test Google authentication
+    print("\n===== Testing Google Authentication =====\n")
+    google_success, google_response = tester.test_google_auth()
+    if google_success:
+        print("✅ Google authentication is working correctly")
+    else:
+        print("❌ Google authentication failed")
+    
     # Test forgot password functionality
     print("\n===== Testing Forgot Password Flow =====\n")
     forgot_success, forgot_response = tester.test_forgot_password(test_user_email)

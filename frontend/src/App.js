@@ -387,7 +387,10 @@ const Navbar = () => {
         
         {/* Mobile Navigation Toggle - only shown on small screens */}
         <div className="md:hidden mt-4 flex justify-between items-center">
-          <button className="text-gray-600 hover:text-teal-600 focus:outline-none">
+          <button 
+            onClick={toggleMobileMenu} 
+            className="text-gray-600 hover:text-teal-600 focus:outline-none"
+          >
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
@@ -410,6 +413,82 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+        
+        {/* Mobile Navigation Menu */}
+        {mobileMenuOpen && (
+          <div ref={mobileMenuRef} className="md:hidden mt-2 py-3 px-2 bg-white rounded-lg shadow-lg border border-gray-200">
+            <div className="flex flex-col space-y-2">
+              <Link 
+                to="/how-it-works" 
+                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                How CashX Works
+              </Link>
+              <Link 
+                to="/facts" 
+                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get the Facts
+              </Link>
+              <Link 
+                to="/payment-benefits" 
+                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Payment & Benefits
+              </Link>
+              <Link 
+                to="/invite" 
+                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Invite a Friend
+              </Link>
+              <Link 
+                to="/help" 
+                className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Help
+              </Link>
+              
+              {user && (
+                <>
+                  <div className="border-t border-gray-200 my-2 pt-2"></div>
+                  <Link 
+                    to="/products" 
+                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Browse Products
+                  </Link>
+                  <Link 
+                    to="/transactions" 
+                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    My Transactions
+                  </Link>
+                  <Link 
+                    to="/cashback" 
+                    className="px-4 py-2 text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    My Cashback
+                  </Link>
+                  <button 
+                    onClick={handleLogout}
+                    className="px-4 py-2 text-left text-gray-700 hover:bg-teal-50 hover:text-teal-600 rounded-md"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

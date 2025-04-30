@@ -2555,8 +2555,8 @@ const ProtectedRoute = ({ children }) => {
 
 // Main App Component
 function App() {
-  // You will need to replace this with your actual Google Client ID
-  const googleClientId = "YOUR_GOOGLE_CLIENT_ID";
+  // Using the provided Google Client ID
+  const googleClientId = "389490734160-kdfbbesl0913elnt7i0km6jq4a6pr9ov.apps.googleusercontent.com";
   
   return (
     <GoogleOAuthProvider clientId={googleClientId}>

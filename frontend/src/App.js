@@ -581,7 +581,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      </div>
       
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">

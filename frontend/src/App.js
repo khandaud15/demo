@@ -529,14 +529,14 @@ const Home = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {products.map(product => (
-                <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1">
+                <div key={product.id} className="bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1">
                   <div className="relative">
                     <img 
                       src={product.image_url} 
                       alt={product.title}
                       className="w-full h-52 object-contain p-4"
                     />
-                    <div className="absolute top-4 right-4 bg-teal-500 text-white px-2 py-1 rounded-md text-sm font-semibold">
+                    <div className="absolute top-4 right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                       {product.cashback_percent}% Cashback
                     </div>
                   </div>
@@ -545,13 +545,13 @@ const Home = () => {
                     <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-xl font-bold text-gray-900">₹{product.price.toFixed(2)}</span>
-                      <span className="text-teal-600 font-medium">
+                      <span className="text-teal-600 font-medium bg-teal-50 px-3 py-1 rounded-full">
                         Earn: ₹{(product.price * product.cashback_percent / 100).toFixed(2)}
                       </span>
                     </div>
                     <Link 
                       to={user ? `/products/${product.id}` : `/login?redirect=${encodeURIComponent(`/products/${product.id}`)}`}
-                      className="block w-full text-center bg-teal-500 text-white py-3 rounded-md font-medium hover:bg-teal-600 transition duration-300"
+                      className="block w-full text-center bg-teal-500 text-white py-3 rounded-full font-medium hover:bg-teal-600 transition duration-300"
                     >
                       View Product
                     </Link>

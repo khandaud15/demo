@@ -452,42 +452,51 @@ const Home = () => {
       </div>
       
       {/* How It Works */}
-      <div className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">How CashX Works</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
+      <div className="container mx-auto px-4 py-20">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <h2 className="text-4xl font-bold mb-6 text-gray-900">How CashX Works</h2>
+          <p className="text-lg text-gray-600">Earning cashback has never been easier. Shop at your favorite stores and get rewarded instantly.</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="flex flex-col items-center">
+            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
+              <span className="text-2xl font-bold">1</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Browse Products</h3>
-            <p className="text-gray-600">
-              Explore our wide selection of products from Amazon with exclusive cashback offers.
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">Browse Products</h3>
+            <p className="text-gray-600 text-center">
+              Explore thousands of products from Amazon and other top retailers with exclusive cashback offers.
             </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-              </svg>
+          
+          <div className="flex flex-col items-center">
+            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
+              <span className="text-2xl font-bold">2</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Shop Through Our Links</h3>
-            <p className="text-gray-600">
-              Click on our affiliate links to shop on Amazon. Your purchases are automatically tracked.
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">Shop Through Our Links</h3>
+            <p className="text-gray-600 text-center">
+              Click on our affiliate links to shop on your favorite sites. Your purchases are automatically tracked.
             </p>
           </div>
-          <div className="bg-white p-6 rounded-lg shadow-md text-center">
-            <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
+          
+          <div className="flex flex-col items-center">
+            <div className="bg-teal-100 text-teal-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md">
+              <span className="text-2xl font-bold">3</span>
             </div>
-            <h3 className="text-xl font-semibold mb-2">Earn & Redeem Cashback</h3>
-            <p className="text-gray-600">
-              Earn cashback on verified purchases and redeem via bank transfer or UPI.
+            <h3 className="text-xl font-semibold mb-3 text-gray-900">Earn & Redeem Cashback</h3>
+            <p className="text-gray-600 text-center">
+              Earn cashback on verified purchases and redeem instantly via bank transfer or UPI.
             </p>
           </div>
+        </div>
+        
+        <div className="mt-16 text-center">
+          <Link to="/how-it-works" className="inline-flex items-center text-teal-600 font-semibold hover:text-teal-800">
+            Learn more about how CashX works
+            <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </Link>
         </div>
       </div>
       

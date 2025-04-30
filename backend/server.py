@@ -314,6 +314,84 @@ async def google_auth(google_data: GoogleAuthRequest):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Could not validate Google credentials: {str(e)}")
 
+@api_router.post("/auth/forgot-password")
+async def forgot_password(reset_request: PasswordResetRequest):
+    # Find the user by email
+    user = await get_user_by_email(reset_request.email)
+    if not user:
+        # For security reasons, don't reveal that the email doesn't exist
+        # Just return success even if the email is not found
+        return {"status": "success", "message": "If your email is registered, you will receive a password reset link."}
+    
+    # Generate a reset token (JWT with short expiration)
+    reset_token = create_access_token(
+        data={"sub": user["id"], "type": "password_reset"},
+        expires_delta=timedelta(hours=1)  # Short expiration for security
+    )
+    
+    # In a real application, you would send an email with the reset link
+    # For this demo, we'll just store the token in the database
+    reset_url = f"{BACKEND_URL}/reset-password?token={reset_token}"
+    
+    # Log the reset URL (in a real app, you would send this via email)
+    logging.info(f"Password reset URL for {reset_request.email}: {reset_url}")
+    
+    # Store the reset token in the database
+    await db.password_reset_tokens.update_one(
+        {"user_id": user["id"]},
+        {"$set": {
+            "user_id": user["id"],
+            "token": reset_token,
+            "created_at": datetime.utcnow(),
+            "expires_at": datetime.utcnow() + timedelta(hours=1)
+        }},
+        upsert=True
+    )
+    
+    return {
+        "status": "success",
+        "message": "If your email is registered, you will receive a password reset link.",
+        # Include the token in the response for demo purposes only
+        # In a real application, you would send this via email and not return it
+        "reset_token": reset_token  # Only for demo!
+    }
+
+@api_router.post("/auth/reset-password")
+async def reset_password(reset_data: PasswordReset):
+    try:
+        # Verify the token
+        payload = jwt.decode(reset_data.token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id = payload.get("sub")
+        token_type = payload.get("type")
+        
+        if not user_id or token_type != "password_reset":
+            raise HTTPException(status_code=400, detail="Invalid token")
+        
+        # Check if token exists in database and is not expired
+        reset_token = await db.password_reset_tokens.find_one({"token": reset_data.token})
+        if not reset_token or reset_token.get("expires_at", datetime.min) < datetime.utcnow():
+            raise HTTPException(status_code=400, detail="Invalid or expired token")
+        
+        # Find the user
+        user = await db.users.find_one({"id": user_id})
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        
+        # Update the password
+        hashed_password = get_password_hash(reset_data.new_password)
+        await db.users.update_one(
+            {"id": user_id},
+            {"$set": {"password": hashed_password}}
+        )
+        
+        # Delete the used token
+        await db.password_reset_tokens.delete_one({"token": reset_data.token})
+        
+        return {"status": "success", "message": "Password has been reset successfully"}
+    
+    except jwt.PyJWTError:
+        raise HTTPException(status_code=400, detail="Invalid token")
+
 @api_router.get("/users/me", response_model=User)
 async def get_current_user_profile(current_user: User = Depends(get_current_user)):
     return current_user

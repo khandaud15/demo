@@ -254,7 +254,7 @@ const Navbar = () => {
               <span className="sr-only">CashX</span>
             </Link>
             
-            {/* Main Navigation Links */}
+            {/* Main Navigation Links - Only shown on desktop */}
             <div className="hidden md:flex space-x-8">
               <Link to="/how-it-works" className="hover:text-teal-600 font-medium text-gray-700">
                 How CashX Works

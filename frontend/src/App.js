@@ -423,31 +423,31 @@ const Home = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                Shop now, pay later, earn cashback
+                More Than Shopping. It's Earning.
               </h1>
               <p className="text-lg md:text-xl mb-8 opacity-90">
                 CashX gives you rewards on every purchase. Shop at your favorite stores, earn cashback instantly.
               </p>
               <div className="flex flex-wrap gap-4">
                 {user ? (
-                  <Link to="/products" className="bg-white text-teal-600 py-3 px-8 rounded-md font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
+                  <Link to="/products" className="bg-white text-teal-600 py-3 px-8 rounded-full font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
                     Browse Products
                   </Link>
                 ) : (
-                  <Link to="/register" className="bg-white text-teal-600 py-3 px-8 rounded-md font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
+                  <Link to="/register" className="bg-white text-teal-600 py-3 px-8 rounded-full font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
                     Sign Up Now
                   </Link>
                 )}
-                <Link to="/how-it-works" className="bg-transparent py-3 px-8 rounded-md font-semibold border-2 border-white hover:bg-white hover:text-teal-600 transition duration-300">
+                <Link to="/how-it-works" className="bg-transparent py-3 px-8 rounded-full font-semibold border-2 border-white hover:bg-white hover:text-teal-600 transition duration-300">
                   Learn More
                 </Link>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <img 
-                src="https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?auto=format&fit=crop&q=80"
+                src="https://raw.githubusercontent.com/khandaud15/demo/main/Main.png"
                 alt="Shopping cart with cashback" 
-                className="rounded-lg shadow-xl max-w-full h-auto" 
+                className="max-w-full h-auto" 
                 style={{ maxHeight: "450px" }}
               />
             </div>

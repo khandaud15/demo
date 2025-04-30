@@ -2651,6 +2651,9 @@ function App() {
   // Using the provided Google Client ID
   const googleClientId = "389490734160-kdfbbesl0913elnt7i0km6jq4a6pr9ov.apps.googleusercontent.com";
   
+  // Make client ID available for debugging
+  window.googleClientId = googleClientId;
+  
   return (
     <GoogleOAuthProvider clientId={googleClientId}>
       <AuthProvider>

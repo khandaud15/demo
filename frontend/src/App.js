@@ -412,39 +412,39 @@ const Home = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-blue-600 text-white">
+      <div className="bg-gradient-to-br from-teal-400 to-emerald-500 text-white">
         <div className="container mx-auto px-4 py-16 md:py-24">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Earn Cashback on Every Purchase
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                Shop now, pay later, earn cashback
               </h1>
-              <p className="text-lg md:text-xl mb-6">
-                Shop through CashX and get rewarded with cashback on your favorite products from Amazon.
+              <p className="text-lg md:text-xl mb-8 opacity-90">
+                CashX gives you rewards on every purchase. Shop at your favorite stores, earn cashback instantly.
               </p>
-              <div className="space-x-4">
+              <div className="flex flex-wrap gap-4">
                 {user ? (
-                  <Link to="/products" className="bg-white text-blue-600 py-3 px-6 rounded-md font-semibold hover:bg-blue-50">
+                  <Link to="/products" className="bg-white text-teal-600 py-3 px-8 rounded-md font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
                     Browse Products
                   </Link>
                 ) : (
-                  <Link to="/register" className="bg-white text-blue-600 py-3 px-6 rounded-md font-semibold hover:bg-blue-50">
+                  <Link to="/register" className="bg-white text-teal-600 py-3 px-8 rounded-md font-semibold hover:bg-teal-50 transition duration-300 shadow-md">
                     Sign Up Now
                   </Link>
                 )}
-                <Link to="/how-it-works" className="py-3 px-6 rounded-md font-semibold border border-white hover:bg-blue-700">
-                  How It Works
+                <Link to="/how-it-works" className="bg-transparent py-3 px-8 rounded-md font-semibold border-2 border-white hover:bg-white hover:text-teal-600 transition duration-300">
+                  Learn More
                 </Link>
               </div>
             </div>
             <div className="md:w-1/2 flex justify-center">
               <img 
-                src="https://images.unsplash.com/photo-1530973428-5bf2db2e4d71?q=80&w=1000&auto=format&fit=crop" 
-                alt="Shopping with cashback" 
-                className="rounded-lg shadow-lg max-w-full h-auto" 
-                style={{ maxHeight: "400px" }}
+                src="https://images.unsplash.com/photo-1525328437458-0c4d4db7cab4?auto=format&fit=crop&q=80"
+                alt="Shopping cart with cashback" 
+                className="rounded-lg shadow-xl max-w-full h-auto" 
+                style={{ maxHeight: "450px" }}
               />
             </div>
           </div>

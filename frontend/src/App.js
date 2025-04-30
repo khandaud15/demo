@@ -57,6 +57,37 @@ const AuthProvider = ({ children }) => {
     }
   };
   
+  const googleLogin = async (credential) => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      console.log("Attempting Google login");
+      
+      const response = await axios.post(`${API}/auth/google`, {
+        token: credential
+      });
+      
+      console.log("Google login response:", response.data);
+      
+      const { access_token, user } = response.data;
+      
+      localStorage.setItem("token", access_token);
+      localStorage.setItem("user", JSON.stringify(user));
+      
+      setToken(access_token);
+      setUser(user);
+      
+      return { success: true };
+    } catch (err) {
+      console.error("Google login error:", err);
+      setError(err.response?.data?.detail || "Google login failed");
+      return { success: false, error: err.response?.data?.detail || "Google login failed" };
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   const register = async (name, email, password) => {
     setLoading(true);
     setError(null);

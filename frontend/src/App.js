@@ -1998,70 +1998,75 @@ const ProtectedRoute = ({ children }) => {
 
 // Main App Component
 function App() {
+  // You will need to replace this with your actual Google Client ID
+  const googleClientId = "YOUR_GOOGLE_CLIENT_ID";
+  
   return (
-    <AuthProvider>
-      <Router>
-        <div className="min-h-screen flex flex-col">
-          <Navbar />
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/products" element={
-                <ProtectedRoute>
-                  <Products />
-                </ProtectedRoute>
-              } />
-              <Route path="/products/:id" element={
-                <ProtectedRoute>
-                  <ProductDetail />
-                </ProtectedRoute>
-              } />
-              <Route path="/transactions" element={
-                <ProtectedRoute>
-                  <Transactions />
-                </ProtectedRoute>
-              } />
-              <Route path="/cashback" element={
-                <ProtectedRoute>
-                  <Cashback />
-                </ProtectedRoute>
-              } />
-              <Route path="/payment-methods" element={
-                <ProtectedRoute>
-                  <Cashback />
-                </ProtectedRoute>
-              } />
-              <Route path="/profile" element={
-                <ProtectedRoute>
-                  <div className="container mx-auto py-8 px-4">
-                    <h1 className="text-3xl font-bold mb-6">My Profile</h1>
-                    <p className="text-gray-600">Profile page will be implemented in the next phase.</p>
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <AuthProvider>
+        <Router>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/products" element={
+                  <ProtectedRoute>
+                    <Products />
+                  </ProtectedRoute>
+                } />
+                <Route path="/products/:id" element={
+                  <ProtectedRoute>
+                    <ProductDetail />
+                  </ProtectedRoute>
+                } />
+                <Route path="/transactions" element={
+                  <ProtectedRoute>
+                    <Transactions />
+                  </ProtectedRoute>
+                } />
+                <Route path="/cashback" element={
+                  <ProtectedRoute>
+                    <Cashback />
+                  </ProtectedRoute>
+                } />
+                <Route path="/payment-methods" element={
+                  <ProtectedRoute>
+                    <Cashback />
+                  </ProtectedRoute>
+                } />
+                <Route path="/profile" element={
+                  <ProtectedRoute>
+                    <div className="container mx-auto py-8 px-4">
+                      <h1 className="text-3xl font-bold mb-6">My Profile</h1>
+                      <p className="text-gray-600">Profile page will be implemented in the next phase.</p>
+                    </div>
+                  </ProtectedRoute>
+                } />
+                <Route path="/how-it-works" element={<div className="container mx-auto py-8 px-4">
+                  <h1 className="text-3xl font-bold mb-6">How CashX Works</h1>
+                  <p className="text-gray-600">Detailed explanation page will be implemented in the next phase.</p>
+                </div>} />
+                <Route path="*" element={
+                  <div className="min-h-screen flex justify-center items-center bg-gray-50">
+                    <div className="text-center max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
+                      <h1 className="text-3xl font-bold text-red-600 mb-4">404</h1>
+                      <h2 className="text-xl font-semibold mb-3">Page Not Found</h2>
+                      <p className="text-gray-600 mb-6">The page you're looking for doesn't exist or has been moved.</p>
+                      <Link to="/" className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">
+                        Return Home
+                      </Link>
+                    </div>
                   </div>
-                </ProtectedRoute>
-              } />
-              <Route path="/how-it-works" element={<div className="container mx-auto py-8 px-4">
-                <h1 className="text-3xl font-bold mb-6">How CashX Works</h1>
-                <p className="text-gray-600">Detailed explanation page will be implemented in the next phase.</p>
-              </div>} />
-              <Route path="*" element={
-                <div className="min-h-screen flex justify-center items-center bg-gray-50">
-                  <div className="text-center max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-                    <h1 className="text-3xl font-bold text-red-600 mb-4">404</h1>
-                    <h2 className="text-xl font-semibold mb-3">Page Not Found</h2>
-                    <p className="text-gray-600 mb-6">The page you're looking for doesn't exist or has been moved.</p>
-                    <Link to="/" className="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">
-                      Return Home
-                    </Link>
-                  </div>
-                </div>
-              } />
-            </Routes>
-          </main>
-        </div>
-      </Router>
-    </AuthProvider>
+                } />
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </AuthProvider>
+    </GoogleOAuthProvider>
   );
 }
 

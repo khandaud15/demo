@@ -189,12 +189,21 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef(null);
   
   const handleLogout = () => {
     logout();
     navigate("/login");
     setDropdownOpen(false);
+  };
+  
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Here you would handle the search functionality
+    console.log("Searching for:", searchQuery);
+    // For example, navigate to search results page
+    // navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
   };
   
   // Handle click outside to close dropdown
@@ -219,37 +228,68 @@ const Navbar = () => {
   };
   
   return (
-    <nav className="bg-blue-600 text-white shadow-lg">
+    <nav className="bg-green-100 text-gray-800 shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 py-3">
+        {/* Main Navigation Bar */}
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold">
-              CashX
+          {/* Logo and Main Nav Links */}
+          <div className="flex items-center space-x-8">
+            <Link to="/" className="flex items-center">
+              <span className="text-xl font-bold">CashX</span>
+              <span className="sr-only">Logo</span>
             </Link>
-            {user && (
-              <div className="ml-8 hidden md:flex space-x-4">
-                <Link to="/products" className="hover:text-blue-200">
-                  Products
-                </Link>
-                <Link to="/transactions" className="hover:text-blue-200">
-                  My Transactions
-                </Link>
-                <Link to="/cashback" className="hover:text-blue-200">
-                  My Cashback
-                </Link>
-              </div>
-            )}
+            
+            {/* Main Navigation Links */}
+            <div className="hidden md:flex space-x-6">
+              <Link to="/how-it-works" className="hover:text-blue-600 font-medium">
+                How CashX Works
+              </Link>
+              <Link to="/facts" className="hover:text-blue-600 font-medium">
+                Get the Facts
+              </Link>
+              <Link to="/payment-benefits" className="hover:text-blue-600 font-medium">
+                Payment & Benefit
+              </Link>
+              <Link to="/invite" className="hover:text-blue-600 font-medium">
+                Invite a Friend
+              </Link>
+              <Link to="/help" className="hover:text-blue-600 font-medium">
+                Help
+              </Link>
+            </div>
           </div>
+          
+          {/* Right Section: Search, Login, Signup */}
           <div className="flex items-center space-x-4">
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="hidden md:block relative">
+              <input
+                type="text"
+                placeholder="Search brands, products and stores"
+                className="bg-white border border-gray-300 rounded-full py-2 px-4 pr-10 w-64 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button 
+                type="submit"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </button>
+            </form>
+            
+            {/* User Menu or Auth Buttons */}
             {user ? (
-              <>
-                <span className="hidden md:inline">
-                  Balance: ₹{user.cashback_balance.toFixed(2)}
-                </span>
-                <div className="relative" ref={dropdownRef}>
+              <div className="relative" ref={dropdownRef}>
+                <div className="flex items-center">
+                  <span className="hidden md:inline mr-3 text-sm font-medium">
+                    Balance: ₹{user.cashback_balance.toFixed(2)}
+                  </span>
                   <button 
                     onClick={toggleDropdown} 
-                    className="flex items-center hover:text-blue-200 focus:outline-none"
+                    className="flex items-center hover:text-blue-600 focus:outline-none"
                   >
                     <span className="mr-1">{user.name}</span>
                     <svg 
@@ -262,43 +302,86 @@ const Navbar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </button>
-                  {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
-                      <Link 
-                        to="/profile" 
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        My Profile
-                      </Link>
-                      <Link 
-                        to="/payment-methods" 
-                        className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
-                        onClick={() => setDropdownOpen(false)}
-                      >
-                        Payment Methods
-                      </Link>
-                      <button 
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
                 </div>
-              </>
+                {dropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                    <Link 
+                      to="/profile" 
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      My Profile
+                    </Link>
+                    <Link 
+                      to="/products" 
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Browse Products
+                    </Link>
+                    <Link 
+                      to="/transactions" 
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      My Transactions
+                    </Link>
+                    <Link 
+                      to="/cashback" 
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      My Cashback
+                    </Link>
+                    <Link 
+                      to="/payment-methods" 
+                      className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      Payment Methods
+                    </Link>
+                    <button 
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <>
-                <Link to="/login" className="hover:text-blue-200">
+              <div className="flex items-center space-x-3">
+                <Link 
+                  to="/login" 
+                  className="font-semibold text-gray-800 hover:text-blue-600 px-4 py-2"
+                >
                   Login
                 </Link>
-                <Link to="/register" className="bg-white text-blue-600 py-1 px-3 rounded-md hover:bg-blue-50">
+                <Link 
+                  to="/register" 
+                  className="bg-gray-900 text-white font-semibold py-2 px-4 rounded hover:bg-gray-800"
+                >
                   Sign Up
                 </Link>
-              </>
+              </div>
             )}
           </div>
+        </div>
+        
+        {/* Mobile Navigation Toggle - only shown on small screens */}
+        <div className="md:hidden mt-4 flex justify-between items-center">
+          <button className="text-gray-600 hover:text-gray-900 focus:outline-none">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          
+          {/* Mobile Search */}
+          <button className="text-gray-600 hover:text-gray-900 focus:outline-none">
+            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </button>
         </div>
       </div>
     </nav>

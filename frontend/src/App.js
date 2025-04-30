@@ -155,10 +155,34 @@ const useAuth = () => {
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   
   const handleLogout = () => {
     logout();
     navigate("/login");
+    setDropdownOpen(false);
+  };
+  
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+
+    // Add event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    // Clean up
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+  
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
   };
   
   return (
@@ -189,27 +213,46 @@ const Navbar = () => {
                 <span className="hidden md:inline">
                   Balance: ₹{user.cashback_balance.toFixed(2)}
                 </span>
-                <div className="relative group">
-                  <button className="flex items-center hover:text-blue-200">
+                <div className="relative" ref={dropdownRef}>
+                  <button 
+                    onClick={toggleDropdown} 
+                    className="flex items-center hover:text-blue-200 focus:outline-none"
+                  >
                     <span className="mr-1">{user.name}</span>
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg 
+                      className={`w-4 h-4 transition-transform duration-200 ${dropdownOpen ? 'transform rotate-180' : ''}`} 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
-                    <Link to="/profile" className="block px-4 py-2 text-gray-800 hover:bg-blue-100">
-                      My Profile
-                    </Link>
-                    <Link to="/payment-methods" className="block px-4 py-2 text-gray-800 hover:bg-blue-100">
-                      Payment Methods
-                    </Link>
-                    <button 
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
-                    >
-                      Logout
-                    </button>
-                  </div>
+                  {dropdownOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                      <Link 
+                        to="/profile" 
+                        className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        My Profile
+                      </Link>
+                      <Link 
+                        to="/payment-methods" 
+                        className="block px-4 py-2 text-gray-800 hover:bg-blue-100"
+                        onClick={() => setDropdownOpen(false)}
+                      >
+                        Payment Methods
+                      </Link>
+                      <button 
+                        onClick={handleLogout}
+                        className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-blue-100"
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  )}
                 </div>
               </>
             ) : (

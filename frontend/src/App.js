@@ -574,11 +574,11 @@ const Home = () => {
               Join thousands of smart shoppers who earn cashback on their everyday purchases. It's free to join!
             </p>
             {user ? (
-              <Link to="/products" className="bg-white text-teal-600 py-4 px-10 rounded-md font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
+              <Link to="/products" className="bg-white text-teal-600 py-4 px-10 rounded-full font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
                 Browse Products
               </Link>
             ) : (
-              <Link to="/register" className="bg-white text-teal-600 py-4 px-10 rounded-md font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
+              <Link to="/register" className="bg-white text-teal-600 py-4 px-10 rounded-full font-semibold text-lg hover:bg-teal-50 transition duration-300 shadow-lg">
                 Sign Up Now
               </Link>
             )}

@@ -235,8 +235,12 @@ const Navbar = () => {
           {/* Logo and Main Nav Links */}
           <div className="flex items-center space-x-8">
             <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-teal-500">CashX</span>
-              <span className="sr-only">Logo</span>
+              <img 
+                src="https://raw.githubusercontent.com/khandaud15/demo/main/logo6.png" 
+                alt="CashX Logo" 
+                className="h-8 w-auto"
+              />
+              <span className="sr-only">CashX</span>
             </Link>
             
             {/* Main Navigation Links */}

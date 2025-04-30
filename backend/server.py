@@ -75,6 +75,19 @@ class UserCreate(UserBase):
             raise ValueError('Password must be at least 8 characters')
         return v
 
+class PasswordResetRequest(BaseModel):
+    email: EmailStr
+
+class PasswordReset(BaseModel):
+    token: str
+    new_password: str
+    
+    @validator('new_password')
+    def password_strength(cls, v):
+        if len(v) < 8:
+            raise ValueError('Password must be at least 8 characters')
+        return v
+
 class User(UserBase):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     created_at: datetime = Field(default_factory=datetime.utcnow)

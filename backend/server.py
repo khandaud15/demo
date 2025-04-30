@@ -336,6 +336,17 @@ async def forgot_password(reset_request: PasswordResetRequest):
     # Log the reset URL (in a real app, you would send this via email)
     logging.info(f"Password reset URL for {reset_request.email}: {reset_url}")
     
+    # Ensure the password_reset_tokens collection exists
+    try:
+        # If collection doesn't exist, this will create it
+        await db.create_collection("password_reset_tokens")
+        # Create an index on user_id for faster lookups
+        await db.password_reset_tokens.create_index("user_id")
+        logging.info("Created password_reset_tokens collection and index")
+    except Exception as e:
+        # Collection might already exist
+        logging.info(f"Collection setup: {str(e)}")
+    
     # Store the reset token in the database
     await db.password_reset_tokens.update_one(
         {"user_id": user["id"]},
@@ -347,6 +358,9 @@ async def forgot_password(reset_request: PasswordResetRequest):
         }},
         upsert=True
     )
+    
+    # Log that we're returning the token for debugging
+    logging.info(f"Returning reset token for {reset_request.email}: {reset_token[:10]}...")
     
     return {
         "status": "success",
